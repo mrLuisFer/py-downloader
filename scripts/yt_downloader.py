@@ -20,6 +20,10 @@ class YTDownloader:
         try:
             dic['title'] = yt.title
             dic['thumbnail'] = yt.thumbnail_url
+            dic['author'] = yt.author
+            dic['description'] = yt.description
+            dic['vid_info'] = yt.vid_info
+            
             return dic
         except:
             return None

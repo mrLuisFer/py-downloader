@@ -7,43 +7,91 @@
     <title>Multi Loader | YouTube | Twitter | Instagram</title>
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
+      href="{{ url_for('static', filename='index.css') }}"
     />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+    </style>
   </head>
   <body>
-    <main class="">
-      <header
-        class="bg-transparent flex items-center justify-between p-4 border-b-2"
-      >
-        <h1 class="text-3xl font-bold text-center">Multi Loader</h1>
-        <p class="text-center">
-          <a href="" class="font-semibold hover:text-red-500">YouTube</a> |
-          <a href="" class="font-semibold hover:text-blue-400">Twitter</a> |
-          <a href="" class="font-semibold hover:text-fuchsia-500">Instagram</a>
-        </p>
+    <main class="main">
+      <header class="header">
+        <h1 class="">Multi Downloader</h1>
+        <!-- maybe a interactive menu -->
       </header>
-      <form
-        class="flex flex-col items-center justify-center mt-10 gap-6"
-        method="post"
-        action="{{ url_for('yt_download')}}"
-        enctype="multipart/form-data"
-      >
-        <input
-          class="border-2 border-gray-300 px-2 py-4 rounded-lg w-2/3 text-lg"
-          type="text"
-          placeholder="Paste your url"
-          aria-label="Paste your url"
-          name="yt_url"
-          required
-        />
-        <button
-          class="py-4 px-6 text-white rounded-xl w-1/2 text-xl bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400"
-          type="submit"
-        >
-          Submit
-        </button>
-      </form>
+      <div class="main__content">
+        <section class="card__container yt__container">
+          <h2 class="card__title">YouTube</h2>
+          <form
+            class="form"
+            method="post"
+            action="{{ url_for('yt_download')}}"
+            enctype="multipart/form-data"
+          >
+            <input
+              class="form__input"
+              type="text"
+              placeholder="Paste your URL"
+              aria-label="Paste your URL"
+              name="yt_url"
+              required
+              autocomplete="off"
+              pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)"
+            />
+            <button class="form__btn" type="submit">Send</button>
+          </form>
+        </section>
+
+        <section class="card__container twitter__container">
+          <h2 class="card__title">Twitter</h2>
+          <form
+            class="form"
+            method="post"
+            action="{{ url_for('twitter_download')}}"
+            enctype="multipart/form-data"
+          >
+            <input
+              class="form__input"
+              type="text"
+              placeholder="Paste your URL"
+              aria-label="Paste your URL"
+              name="yt_url"
+              required
+              autocomplete="off"
+              pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)"
+            />
+            <button class="form__btn" type="submit">Send</button>
+          </form>
+        </section>
+
+        <section class="card__container instagram__container">
+          <h2 class="card__title">Instagram</h2>
+          <form
+            class="form"
+            method="post"
+            action="{{ url_for('instagram_download')}}"
+            enctype="multipart/form-data"
+          >
+            <input
+              class="form__input"
+              type="text"
+              placeholder="Paste your URL"
+              aria-label="Paste your URL"
+              name="yt_url"
+              required
+              autocomplete="off"
+              pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)"
+            />
+            <button class="form__btn" type="submit">Send</button>
+          </form>
+        </section>
+      </div>
     </main>
     <script></script>
   </body>
