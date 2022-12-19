@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <h1>{{ title }}</h1>
+    <img src="{{thumbnail}}" alt="{{title}}" />
+    <a href="{{url}}" target="_blank">Source</a>
+    <button id="download-btn">Download</button>
+    <script async>
+      const url = "http://localhost:8080/file/yt";
+      async function downloadFile() {
+        try {
+          const res = await fetch(url, {
+            method: "GET",
+          });
+          const blob = await res.blob();
+          const newBlob = new Blob([blob]);
+          const blobUrl = window.URL.createObjectURL(newBlob);
+
+          const link = document.createElement("a");
+          link.href = blobUrl;
+          link.setAttribute("download", `{{title}}.mp4`);
+          document.body.appendChild(link);
+          link.click();
+          link.parentNode.removeChild(link);
+          window.URL.revokeObjectURL(blobUrl);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+
+      const downloadBtn = document.getElementById("download-btn");
+      downloadBtn.addEventListener("click", downloadFile);
+    </script>
+  </body>
+</html>
