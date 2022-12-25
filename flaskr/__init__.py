@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, send_file, jsonify
 from scripts.yt_downloader import YTDownloader
 from io import BytesIO
+from scripts.instagram_downloader import InstagramDownloader
 
 app = Flask(__name__, static_url_path = '/static')
 form_path = "https://www.youtube.com/watch?v=9T6ktFC1n-c&ab_channel=elrubiusOMG"
@@ -43,8 +44,10 @@ def twitter_download():
     return render_template('twitter-download.html')
 
 ########## INSTAGRAM DOWNLOAD ##########
-@app.route("/download/instagram")
+@app.route("/download/instagram", methods = ['POST', 'GET'])
 def instagram_download():
+    form_url: str = request.form['instagram_url']
+    InstagramDownloader().download(form_url, session_id='')
     return render_template('instagram-download.html')
 
 if __name__ == '__main__':

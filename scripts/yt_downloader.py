@@ -5,15 +5,16 @@ class YTDownloader:
     def download_local_video(url: str) -> dict:
         yt: YouTube = YouTube(url)
         stream: Stream = yt.streams.get_highest_resolution()
+        d = dict()
         try:
-            d = dict()
             d['yt'] = yt
             d['stream'] = stream
             stream.download()
             return d
         except:
             print('An error occured while downloading the video')
-            
+            return d
+
     def get_yt_info(url: str) -> dict:
         yt: YouTube = YouTube(url)
         dic: dict = dict()
@@ -23,10 +24,10 @@ class YTDownloader:
             dic['author'] = yt.author
             dic['description'] = yt.description
             dic['vid_info'] = yt.vid_info
-            
+
             return dic
         except:
-            return None
+            return dic
 
     def get_stream(url: str) -> Stream:
         yt: YouTube = YouTube(url)
@@ -36,7 +37,7 @@ class YTDownloader:
         except:
             print('An error occured while getting the stream')
             return None
-    
+
     def get_video_title(url: str) -> str:
         yt: YouTube = YouTube(url)
         try:
@@ -44,7 +45,7 @@ class YTDownloader:
         except:
             print("An error occured while getting the video's title")
             return ""
-    
+
     def get_video_buffer(url: str) -> BytesIO:
         buffer = BytesIO()
         yt_stream: Stream = YTDownloader.get_stream(url)

@@ -1,6 +1,6 @@
 
 const videoFileUrl = "http://localhost:8080/file/yt";
-const videoInfoUrl = "http://localhost:8080/file/yt/info"
+const videoInfoUrl = "http://localhost:8080/file/yt/info";
 
 async function downloadFile() {
   try {
